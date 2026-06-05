@@ -1,0 +1,63 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+  name     String?
+
+  meetings    Meeting[]
+  actionItems ActionItem[]
+}
+
+model Meeting {
+  id          String   @id @default(uuid())
+  title       String
+  meetingDate DateTime
+  transcript  String   // JSON string of transcript segments
+  analysis    String?  // JSON string of { summary, decisions, followUpSuggestions }
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+
+  actionItems ActionItem[]
+
+  createdAt   DateTime @default(now())
+}
+
+model ActionItem {
+  id          String   @id @default(uuid())
+  task        String
+  assignee    String
+  status      String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED
+  dueDate     DateTime?
+  citations   String?  // JSON string of citations
+
+  meetingId   String?
+  meeting     Meeting?  @relation(fields: [meetingId], references: [id])
+
+  userId      String   // Owner
+  user        User     @relation(fields: [userId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reminderHistories ReminderHistory[]
+}
+
+model ReminderHistory {
+  id           String     @id @default(uuid())
+  actionItemId String
+  actionItem   ActionItem @relation(fields: [actionItemId], references: [id])
+  status       String     // SUCCESS or FAILED
+  errorMessage String?
+  traceId      String
+  createdAt    DateTime   @default(now())
+}

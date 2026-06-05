@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const actionItem_controller_1 = require("../controllers/actionItem.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const validation_middleware_1 = require("../middlewares/validation.middleware");
+const actionItem_schema_1 = require("../schemas/actionItem.schema");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authMiddleware);
+router.post('/', (0, validation_middleware_1.validate)(actionItem_schema_1.createActionItemSchema), actionItem_controller_1.createActionItem);
+router.get('/overdue', actionItem_controller_1.getOverdueActionItems);
+router.patch('/:id/status', (0, validation_middleware_1.validate)(actionItem_schema_1.updateActionItemStatusSchema), actionItem_controller_1.updateStatus);
+router.get('/', (0, validation_middleware_1.validate)(actionItem_schema_1.getActionItemsSchema), actionItem_controller_1.getActionItems);
+exports.default = router;

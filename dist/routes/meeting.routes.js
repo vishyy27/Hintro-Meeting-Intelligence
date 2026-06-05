@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const meeting_controller_1 = require("../controllers/meeting.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const validation_middleware_1 = require("../middlewares/validation.middleware");
+const meeting_schema_1 = require("../schemas/meeting.schema");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authMiddleware);
+router.post('/', (0, validation_middleware_1.validate)(meeting_schema_1.createMeetingSchema), meeting_controller_1.createMeeting);
+router.get('/', meeting_controller_1.listMeetings);
+router.get('/:id', meeting_controller_1.getMeeting);
+router.post('/:id/analyze', (0, validation_middleware_1.validate)(meeting_schema_1.analyzeMeetingSchema), meeting_controller_1.analyzeMeeting);
+exports.default = router;
