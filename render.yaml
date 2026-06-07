@@ -7,7 +7,7 @@ services:
     startCommand: npm start
     envVars:
       - key: DATABASE_URL
-        value: file:/var/data/dev.db
+        value: file:./dev.db
       - key: JWT_SECRET
         generateValue: true
       - key: OPENROUTER_API_KEY
@@ -16,7 +16,3 @@ services:
         value: google/gemma-4-31b-it:free
       - key: WEBHOOK_URL
         sync: false
-    disk:
-      name: sqlite-data
-      mountPath: /var/data
-      sizeGB: 1
