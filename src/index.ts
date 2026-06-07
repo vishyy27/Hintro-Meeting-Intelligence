@@ -31,8 +31,8 @@ app.get('/health', (req, res) => {
 app.get('/api/evaluation', (req, res) => {
   res.json({
     candidateName: 'D Vishwanath',
-    email: 'dvish@example.com',
-    repositoryUrl: 'https://github.com/dvish/Hintro',
+    email: 'dvishwas108@gmail.com',
+    repositoryUrl: 'https://github.com/vishyy27/Hintro-Meeting-Intelligence',
     deployedUrl: 'https://hintro-backend.onrender.com',
     externalIntegration: 'Discord Webhook',
     features: ['Authentication', 'AI Analysis', 'Reminder Scheduler'],
