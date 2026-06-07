@@ -30,7 +30,7 @@ app.get('/health', (req, res) => {
 // Candidate Evaluation Endpoint
 app.get('/api/evaluation', (req, res) => {
   res.json({
-    candidateName: 'D Vishwanath',
+    candidateName: 'Vishwas',
     email: 'dvishwas108@gmail.com',
     repositoryUrl: 'https://github.com/vishyy27/Hintro-Meeting-Intelligence',
     deployedUrl: 'https://hintro-meeting-intelligence-hh41.onrender.com',
