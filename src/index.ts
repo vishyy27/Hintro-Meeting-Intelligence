@@ -33,9 +33,20 @@ app.get('/api/evaluation', (req, res) => {
     candidateName: 'D Vishwanath',
     email: 'dvishwas108@gmail.com',
     repositoryUrl: 'https://github.com/vishyy27/Hintro-Meeting-Intelligence',
-    deployedUrl: 'https://hintro-backend.onrender.com',
-    externalIntegration: 'Discord Webhook',
-    features: ['Authentication', 'AI Analysis', 'Reminder Scheduler'],
+    deployedUrl: 'https://hintro-meeting-intelligence-hh41.onrender.com',
+    externalIntegration: 'Slack Webhook',
+    features: [
+      'JWT Authentication',
+      'Meeting Management with Pagination',
+      'AI Meeting Analysis with Citation Grounding',
+      'Action Item Management',
+      'Overdue Detection',
+      'Scheduled Reminder Job (node-cron)',
+      'Slack Webhook Integration',
+      'Swagger/OpenAPI Documentation',
+      'Input Validation (Zod)',
+      'Structured Logging with Trace IDs'
+    ],
   });
 });
 
